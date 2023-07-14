@@ -1,6 +1,6 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Link, Tabs } from 'expo-router';
-import { Pressable, useColorScheme } from 'react-native';
+import { Pressable, useColorScheme, Image } from 'react-native';
 
 import Colors from '@/constants/Colors';
 
@@ -50,6 +50,29 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
+      <Tabs.Screen
+        name="gallery"
+        options={{
+          title: "Gallery",
+          headerShown: false,
+          tabBarIcon: ({ color }) => <TabBarIcon name="photo" color={color} />
+        }} />
+
+      <Tabs.Screen
+        name="albums"
+        options={{
+          title: 'Albums',
+          tabBarIcon: ({ focused }) => {
+            return <Image
+              source={require('@/assets/images/favicon.png')}
+              style={{
+                width: 28,
+                height: 28,
+                tintColor: focused ? Colors[colorScheme ?? 'light'].tint : Colors[colorScheme ?? 'light'].text
+              }} />
+          }
+        }} />
+
     </Tabs>
   );
 }
